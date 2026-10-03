@@ -1,6 +1,6 @@
 {
   "name": "@twylt/core",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "TypeScript implementation of the TWYLT 1.8 protocol for Node.js 20+",
   "type": "module",
   "engines": {

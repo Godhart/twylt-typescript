@@ -1,10 +1,24 @@
+import AjvModule from 'ajv';
+import addFormatsModule from 'ajv-formats';
 import { readFile, writeFile } from 'node:fs/promises';
 import process from 'node:process';
-import Ajv, { type ErrorObject, type ValidateFunction } from 'ajv';
-import addFormats from 'ajv-formats';
+import type { ErrorObject, ValidateFunction } from 'ajv';
+
 import type { Static, TSchema } from '@sinclair/typebox';
 import { DESCRIBE_MODES, TWYLT_FORMAT_VERSION, type DescribeMode, type ErrorFormat, type ToolDefinition, type TwyltErrorBody } from './types.js';
 import { withIdentity } from './schema.js';
+
+
+// Ajv's dual CJS/ESM declarations can be exposed as a module namespace by
+// TypeScript NodeNext (notably with Node 20 resolution). Normalize the runtime
+// shape explicitly and give TypeScript the callable/constructable contracts we
+// actually use.
+type AjvInstance = import('ajv').default;
+type AjvConstructor = new (options?: import('ajv').Options) => AjvInstance;
+type AddFormats = (ajv: AjvInstance, options?: import('ajv-formats').FormatsPluginOptions) => AjvInstance;
+
+const Ajv = (('default' in AjvModule ? AjvModule.default : AjvModule) as unknown) as AjvConstructor;
+const addFormats = (('default' in addFormatsModule ? addFormatsModule.default : addFormatsModule) as unknown) as AddFormats;
 
 const EXIT = { input: 2, output: 3, protocol: 4, biz: 5 } as const;
 

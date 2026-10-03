@@ -1,4 +1,4 @@
-# TWYLT TypeScript 0.2.0
+# TWYLT TypeScript 0.2.3
 
 TypeScript/Node.js 20+ implementation of the language-independent **TWYLT 1.8** executable-tool protocol.
 

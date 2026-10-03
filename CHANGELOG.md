@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.2.3
+
+- Fixed Ajv/ajv-formats compile-time interoperability under TypeScript `NodeNext`, including Node.js 20 environments.
+- Added an explicit typed module-shape normalization adapter (`default ?? module`) instead of relying on TypeScript's CJS/ESM inference.
+- Kept the public API and TWYLT protocol behavior unchanged.
+- Added ADR-005.
+
+## 0.2.2
+
+- Fixed Ajv 8 / `ajv-formats` TypeScript compilation under ESM + `NodeNext`.
+- Removed the `createRequire()` workaround introduced in 0.2.1.
+- Use the packages' declared default exports directly.
+- Added ADR-004 documenting the correction and the requirement that release validation include a clean TypeScript build.
+
+## 0.2.1
+
+- Fix Ajv and ajv-formats loading/type checking under TypeScript `NodeNext` by using Node's `createRequire()` CJS bridge with retained package types.
+- Fix TS2862 in schema identity decoration by separating the generic schema value from its mutable record view.
+- Keep Node.js 20+ as the runtime baseline and TWYLT 1.8 behavior unchanged.
+
+
 ## 0.2.0
 
 - Fixed the package build layout: `src/index.ts` now compiles to `dist/index.js`, matching `main`, `types`, and `exports` in `package.json`.

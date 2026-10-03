@@ -20,8 +20,9 @@ function closeNode(node: unknown): void {
 }
 
 export function withIdentity<T extends TSchema>(schema: T, name?: string, version?: string): T {
-  const result = closeSchema(schema) as T & Record<string, unknown>;
-  if (name) result.$id = name;
-  if (version) result['x-schema-version'] = version;
+  const result = closeSchema(schema);
+  const mutable = result as Record<string, unknown>;
+  if (name) mutable.$id = name;
+  if (version) mutable['x-schema-version'] = version;
   return result;
 }
