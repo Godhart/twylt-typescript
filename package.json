@@ -1,6 +1,6 @@
 {
   "name": "@twylt/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript implementation of the TWYLT 1.8 protocol for Node.js 20+",
   "type": "module",
   "engines": {
@@ -20,10 +20,11 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test dist/tests/*.test.js",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test .test-dist/tests/*.test.js && node tests/package-import.mjs",
     "check": "npm run test",
-    "example": "npm run build && node dist/examples/list-directory/tool.js"
+    "example": "npm run build && tsc -p tsconfig.examples.json && node .example-dist/examples/list-directory/tool.js",
+    "clean": "node -e \"for (const p of ['dist','.test-dist','.example-dist']) require('node:fs').rmSync(p,{recursive:true,force:true})\""
   },
   "dependencies": {
     "@sinclair/typebox": "^0.34.41",

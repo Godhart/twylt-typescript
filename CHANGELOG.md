@@ -1,13 +1,14 @@
 # Changelog
 
-## 0.1.0-node20
+## 0.2.0
 
-- Added Node.js 20+ runtime baseline variant.
-- Runtime/protocol behavior is unchanged from 0.1.0.
-- Development Node typings target the Node 20 API surface.
+- Fixed the package build layout: `src/index.ts` now compiles to `dist/index.js`, matching `main`, `types`, and `exports` in `package.json`.
+- Split library and test TypeScript builds so tests/examples no longer force a `dist/src/...` layout.
+- Added NodeNext interoperability settings required by Ajv and `ajv-formats` (`esModuleInterop` and `allowSyntheticDefaultImports`).
+- Added a regression smoke test that imports the compiled public entry point.
+- Kept Node.js 20 as the minimum supported runtime; Node.js 22 remains supported.
+- Protocol behavior remains TWYLT 1.8 compatible.
 
 ## 0.1.0
-- Initial Node.js 22 / TypeScript implementation of TWYLT 1.8.
-- TypeBox schemas and Ajv validation.
-- CLI/stdin/file transports, describe modes, service CLI, normalized errors and exit codes.
-- Recursive closed-object enforcement, schema identity/version metadata, example and tests.
+
+- Initial TypeScript implementation using TypeBox + Ajv.

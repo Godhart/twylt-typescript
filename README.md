@@ -1,4 +1,4 @@
-# TWYLT TypeScript 0.1.0
+# TWYLT TypeScript 0.2.0
 
 TypeScript/Node.js 20+ implementation of the language-independent **TWYLT 1.8** executable-tool protocol.
 
@@ -69,3 +69,8 @@ Keep optional/business dependencies out of module top-level initialization when 
 ## Compatibility scope
 
 This release implements the core TWYLT 1.8 runtime contract. The next useful step is a language-independent conformance fixture suite shared with the Python implementation, especially for exact error issue normalization and dependency-independent `json_spec` fallback behavior.
+
+
+## Build/package layout
+
+The public ESM entry point is `dist/index.js` and declarations are `dist/index.d.ts`. Tests are compiled separately and cannot change the published package layout. Node.js 20 is the minimum runtime; Node.js 22 is supported.
